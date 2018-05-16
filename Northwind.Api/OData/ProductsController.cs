@@ -1,6 +1,4 @@
-﻿#region
-
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNet.OData;
@@ -11,8 +9,6 @@ using Northwind.Data.Models;
 using Northwind.Service;
 using TrackableEntities.Common.Core;
 using Urf.Core.Abstractions;
-
-#endregion
 
 namespace Northwind.Api.OData
 {
@@ -29,7 +25,9 @@ namespace Northwind.Api.OData
             _unitOfWork = unitOfWork;
         }
 
+        #region CRUDFunctions
         // e.g. GET odata/Products?$skip=2&$top=10
+        //[EnableQuery(MaxTop = 20, PageSize = 5)]
         [EnableQuery]
         public IQueryable<Products> Get() => _productService.Queryable();
 
@@ -124,7 +122,44 @@ namespace Northwind.Api.OData
 
             await _unitOfWork.SaveChangesAsync();
 
-            return StatusCode((int) HttpStatusCode.NoContent);
+            return StatusCode((int)HttpStatusCode.NoContent);
         }
+        #endregion
+
+        #region Functions
+        // GET odata/Products/Default.CalculateStockCashValue
+        [EnableQuery]
+        public IActionResult CalculateStockCashValue()
+        {
+            return Ok(_productService.CalculateStockCashValue());
+        }
+        #endregion
+
+        #region Properties
+
+        // GET odata/Products({key})/UnitPrice/$value
+        public async Task<IActionResult> GetUnitPrice([FromODataUri] int key)
+        {
+            var product = await _productService.FindAsync(key);
+
+            if (product == null)
+                return NotFound();
+
+            return Ok(product.UnitPrice);
+        }
+
+        // GET odata/Products({key})/Supplier
+        [EnableQuery]
+        [ODataRoute("Products({key})/Supplier")]
+        public async Task<IActionResult> GetSupplierFromProduct([FromODataUri] int key)
+        {
+            var supplier = await _productService.Queryable().Where(p => p.ProductId == key).Select(p => p.Supplier).FirstOrDefaultAsync();
+
+            if (supplier == default(Suppliers))
+                return NotFound();
+
+            return Ok(supplier);
+        }
+        #endregion
     }
 }

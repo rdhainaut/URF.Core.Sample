@@ -5,5 +5,6 @@ namespace Northwind.Service
 {
     public interface IProductService: IService<Products>
     {
+        decimal CalculateStockCashValue();
     }
 }

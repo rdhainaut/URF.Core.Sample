@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.OData.Query;
+using System;
 using System.Collections.Generic;
 using URF.Core.EF.Trackable;
 
 namespace Northwind.Data.Models
 {
+    //[Page(MaxTop = 5, PageSize = 10)]
+    //[Count(Disabled = true)]
     public partial class Products: Entity
     {
         public Products()
