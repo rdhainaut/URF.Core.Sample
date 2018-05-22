@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "393e9bf2-93b2-4970-89fd-fc111027eb62",
+		"name": "URF.Core.Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/odata/$metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/$metadata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"$metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products(1)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products(1)",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products(1)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products?$count=true",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products?$count=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products"
+					],
+					"query": [
+						{
+							"key": "$count",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products?$orderby=ProductName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products?$orderby=ProductName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products"
+					],
+					"query": [
+						{
+							"key": "$orderby",
+							"value": "ProductName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Customers?$select=ContactName,ContactTitle,Phone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Customers?$select=ContactName,ContactTitle,Phone",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Customers"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "ContactName,ContactTitle,Phone"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products?$filter=UnitsInStock lt 20&$select=ProductName,UnitsInStock&$orderby=UnitsInStock asc,ProductName asc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products?$filter=UnitsInStock lt 20&$select=ProductName,UnitsInStock&$orderby=UnitsInStock asc,ProductName asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "UnitsInStock lt 20"
+						},
+						{
+							"key": "$select",
+							"value": "ProductName,UnitsInStock"
+						},
+						{
+							"key": "$orderby",
+							"value": "UnitsInStock asc,ProductName asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products?$filter=contains(ProductName,'Sir')",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products?$filter=contains(ProductName,'Sir')",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "contains(ProductName,'Sir')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products(9)/UnitPrice/$value",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products(9)/UnitPrice/$value",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products(9)",
+						"UnitPrice",
+						"$value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products/Default.CalculateStockCashValue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products/Default.CalculateStockCashValue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products",
+						"Default.CalculateStockCashValue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Products(1)/Supplier",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Products(1)/Supplier",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Products(1)",
+						"Supplier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Customers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"CustomerId\": \"MMORL\",\r\n\"CompanyName\": \"Actiris\",\r\n\"ContactName\":\"Mathieu Morlet\",\r\n\"ContactTitle\":\"Manager\",\r\n\"Address\":\"Avenue de l'Astronomie, 14\",\r\n\"City\":\"Brussels\",\r\n\"Region\":\"Brussels\",\r\n\"PostalCode\":\"1210\",\r\n\"Country\":\"Belgium\",\r\n\"Phone\":\"02123456\",\r\n\"Fax\":\"02123457\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:2790/odata/Customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Employees/Default.Get25YearWorkingEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Employees/Default.Get25YearWorkingEmployees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Employees",
+						"Default.Get25YearWorkingEmployees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/odata/Employees/Default.GetEmployeeContacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:2790/odata/Employees/Default.GetEmployeeContacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2790",
+					"path": [
+						"odata",
+						"Employees",
+						"Default.GetEmployeeContacts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
