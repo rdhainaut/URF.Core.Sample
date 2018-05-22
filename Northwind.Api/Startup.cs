@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Northwind.Data.ComplexTypes;
 using Northwind.Data.Models;
 using Northwind.Repository;
 using Northwind.Service;
@@ -70,6 +71,10 @@ namespace Northwind.Api
             services.AddScoped<ITrackableRepository<Suppliers>, TrackableRepository<Suppliers>>();
             services.AddScoped<ISupplierService, SupplierService>();
 
+            services.AddScoped<IEmployeesRepository, EmployeesRepository>();
+            services.AddScoped<IEmployeeContactRepository, EmployeeContactRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+
             // Example: extending IRepository<TEntity>, scope: application-wide and IService<TEntity>, scope: ICustomerService
             services.AddScoped<IRepositoryX<Customers>, RepositoryX<Customers>>();
             services.AddScoped<ICustomerService, CustomerService>();
@@ -108,11 +113,31 @@ namespace Northwind.Api
             suppliersEntitySetConfiguration.EntityType.HasKey(x => x.SupplierId);
             suppliersEntitySetConfiguration.EntityType.Ignore(x => x.Products);
 
+            var employeesEntitySetConfiguration = oDataBuilder.EntitySet<Employees>(nameof(Employees));
+            employeesEntitySetConfiguration.EntityType.HasKey(x => x.EmployeeId);
+            employeesEntitySetConfiguration.EntityType.Ignore(x => x.Photo);
+            employeesEntitySetConfiguration.EntityType.Ignore(x => x.ReportsToNavigation);
+            employeesEntitySetConfiguration.EntityType.Ignore(x => x.InverseReportsToNavigation);
+            employeesEntitySetConfiguration.EntityType.Ignore(x => x.EmployeeTerritories);
+            employeesEntitySetConfiguration.EntityType.Ignore(x => x.Orders);
+
             oDataBuilder
                 .EntityType<Products>()
                 .Collection
                 .Function("CalculateStockCashValue")
                 .Returns<decimal>();
+
+            oDataBuilder
+                .EntityType<Employees>()
+                .Collection
+                .Function("Get25YearWorkingEmployees")
+                .ReturnsCollectionFromEntitySet<Employees>(nameof(Employees));
+
+            oDataBuilder
+                .EntityType<Employees>()
+                .Collection
+                .Function("GetEmployeeContacts")
+                .ReturnsCollection<EmployeeContacts>();
 
             app.UseMvc(routeBuilder =>
                 {

@@ -1,6 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Northwind.Data.ComplexTypes;
 
 namespace Northwind.Data.Models
 {
@@ -24,6 +23,8 @@ namespace Northwind.Data.Models
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Territories> Territories { get; set; }
         public virtual DbSet<Test> Test { get; set; }
+
+        public DbQuery<EmployeeContacts> EmployeeContacts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

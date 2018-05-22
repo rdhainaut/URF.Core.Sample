@@ -128,7 +128,6 @@ namespace Northwind.Api.OData
 
         #region Functions
         // GET odata/Products/Default.CalculateStockCashValue
-        [EnableQuery]
         public IActionResult CalculateStockCashValue()
         {
             return Ok(_productService.CalculateStockCashValue());

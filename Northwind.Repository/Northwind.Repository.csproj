@@ -9,4 +9,8 @@
     <PackageReference Include="URF.Core.EF.Trackable" Version="1.0.0-rc2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Entity\Northwind.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
